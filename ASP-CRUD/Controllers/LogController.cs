@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ASP_CRUD.Models.ViewModels;
 
 namespace ASP_CRUD.Controllers
 {
@@ -10,7 +11,9 @@ namespace ASP_CRUD.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var lvm = new LogViewModel();
+            lvm.Logs = LogRepository.GetLogs();
+            return View(lvm);
         }
     }
 }
