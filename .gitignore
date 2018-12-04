@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+ASP-CRUD/appsettings.Development.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
