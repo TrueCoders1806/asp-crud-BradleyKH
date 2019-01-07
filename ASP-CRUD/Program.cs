@@ -15,7 +15,10 @@ namespace ASP_CRUD
     {
         public static void Main(string[] args)
         {
-            LogRepository.connectionString = JObject.Parse(File.ReadAllText("appsettings.Development.json"))["ConnectionStrings"]["DefaultConnection"].ToString();
+            var cstring = JObject.Parse(File.ReadAllText("appsettings.Development.json"))["ConnectionStrings"]["DefaultConnection"].ToString();
+            RoutineRepository.connectionString = cstring;
+            LogRepository.connectionString = cstring;
+            ActivityRepository.connectionString = cstring;
             CreateWebHostBuilder(args).Build().Run();
         }
 

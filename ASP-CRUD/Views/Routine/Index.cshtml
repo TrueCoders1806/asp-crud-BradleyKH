@@ -1,0 +1,64 @@
+﻿@model ASP_CRUD.Models.ViewModels.RoutineViewModel
+
+@{
+    ViewData["Title"] = "Edit Routines";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-area="" asp-controller="Log" asp-action="Index">Back to Select Routine</a>
+</p>
+
+<div id="newRoutineBtn">
+    @using (Html.BeginForm("DeleteRoutine", "Routine", "POST"))
+    {
+        <button type="button" onclick="showNewRoutineForm()">+ NEW ROUTINE</button>
+        <button type="submit" class="warnBtn">DELETE SELECTED</button>
+        <input asp-for="RoutineId" type="hidden" value="" id="selectedRoutine" />
+    }
+</div>
+
+<div id="newRoutineForm">
+    @using (Html.BeginForm("CreateRoutine", "Routine", "POST"))
+    {
+        <input asp-for="Creator" type="hidden" value="1" />
+        <input asp-for="Activities" type="hidden" value="[]" />
+
+        <input type="text" name="RoutineName" placeholder="Enter routine name"><br>
+        <button type="submit">CREATE</button>
+        <button type="button" class="cancelBtn" onclick="hideNewRoutineForm()">CANCEL</button>
+    }
+</div>
+
+<table class="editForm">
+    @if (Model.Routines.Count < 1)
+    {
+        <tr><td>Create a routine to get started!</td></tr>
+    }
+
+    @for (int i = 0; i < Model.Routines.Count; i++)
+    {
+        <tr>
+            <td>
+                <label for="routine-@i">
+                    <input type="radio" id="routine-@i" name="routineList" 
+                       onclick="updateSelectedRoutine(@Model.Routines[i].Id)" />@Model.Routines[i].RoutineName
+                </label>
+            </td>
+            <td>
+                @using (Html.BeginForm("Edit", "Routine", "POST"))
+                {
+                    <input asp-for="Id" type="hidden" value="@Model.Routines[i].Id" />
+                    <input asp-for="Creator" type="hidden" value="@Model.Routines[i].Creator" />
+                    <input asp-for="RoutineName" type="hidden" value="@Model.Routines[i].RoutineName" />
+                    <input asp-for="Activities" type="hidden" value="@Model.Routines[i].Activities" />
+
+                    <button type="submit">EDIT</button>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+

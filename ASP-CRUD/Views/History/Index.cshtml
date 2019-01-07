@@ -1,0 +1,25 @@
+﻿@model ASP_CRUD.Models.ViewModels.HistoryViewModel
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table-bordered table">
+    <tr>
+        <th>ID</th>
+        <th>Creator</th>
+        <th>Date</th>
+        <th>Session</th>
+    </tr>
+    @for (int i = 0; i < Model.Logs.Count; i++)
+    {
+        <tr>
+            <td>@Model.Logs[i].Id</td>
+            <td>@Model.Logs[i].Creator</td>
+            <td>@Model.Logs[i].Date.ToShortDateString()</td>
+            <td>@Model.Logs[i].Session</td>
+        </tr>
+    }
+</table>

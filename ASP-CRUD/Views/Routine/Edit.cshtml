@@ -1,0 +1,86 @@
+﻿@model ASP_CRUD.Models.ViewModels.EditRoutineViewModel
+@{
+    ViewData["Title"] = "Edit Routine";
+}
+
+@section Scripts 
+{
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            updateTempArray();
+            numActivities = @Model.AllActivities.Count;
+            renderRoutineActivities();
+        });
+    </script>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm("UpdateRoutine", "Routine", "POST"))
+{
+    <div>
+        <a asp-area="" asp-controller="Routine" asp-action="Index">Routines</a> > <input type="text" name="RoutineName" placeholder="Routine Name" value="@Model.CurrentRoutine.RoutineName">
+    </div>
+
+    <input type="hidden" name="Id" value="@Model.CurrentRoutine.Id" />
+    <input id="activitiesString" type="hidden" name="Activities" value="@Model.CurrentRoutine.Activities" />
+
+    <div class="flex">
+
+        @if (Model.AllActivities.Count > 1)
+        {
+            <div class="halfWidth">
+                <h3>Routine</h3>
+                <table class="activityTable" id="routineActivities"></table>
+                <table class="editForm">
+                    <tr>
+                        <td>
+                            <button type="submit" name="submit" id="saveRoutine">SAVE</button>
+                            <button type="button" class="cancelBtn" onclick="location.href='@Url.Action("Index", "Routine")'">CANCEL</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+
+        <div class="halfWidth">
+            <h3 id="test">Activity Options</h3>
+            <table class="activityTable" id="unusedAct">
+                @if (Model.AllActivities.Count > 1)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" onclick="location.href='@Url.Action("Index", "Activities")'">EDIT ACTIVITIES</button>
+                        </td>
+                    </tr>
+                }
+
+                @for (var i = 0; i < Model.AllActivities.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <button type="button" id="addActivity-@i" onclick="addActivity(@Model.AllActivities[i].Id)">+</button>
+                        </td>
+                        <td>
+                            <div id="activityName-@i">@Model.AllActivities[i].ActivityName</div>
+                            <input type="hidden" id="idRef-@i" value="@Model.AllActivities[i].Id^@Model.AllActivities[i].ActivityName" />
+                        </td>
+                    </tr>
+                }
+                @if (Model.AllActivities.Count < 1)
+                {
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-controller="Activities" asp-action="Index">Add some activities!</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+
+}
+

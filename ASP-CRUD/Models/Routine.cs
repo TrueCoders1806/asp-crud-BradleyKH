@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace ASP_CRUD.Models
 {
-    public class Log
+    public class Routine
     {
         public int Id { get; set; }
         public int Creator { get; set; }
-        public DateTime Date { get; set; }
-        public string Session { get; set; }
+        public string RoutineName { get; set; }
+        public string Activities { get; set; }
     }
 }

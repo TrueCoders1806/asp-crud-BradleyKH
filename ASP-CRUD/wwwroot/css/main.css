@@ -1,0 +1,299 @@
+BODY {
+	margin: 0;
+	font-family: arial;
+	color: #555;
+}
+
+NAV > UL {
+	list-style-type: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+NAV > UL > LI {
+	margin: 10px;
+}
+
+A {
+	color: #0080FF;
+	text-decoration: none;
+}
+
+A:hover {
+	text-decoration: underline;
+}
+
+H1 {
+	font-weight: 400;
+}
+
+H2 {
+	font-weight: 400;
+}
+
+HR {
+	border-top: 2px solid #0080FF;
+	width: 200px;
+	margin-left: 0;
+}
+
+BUTTON {
+	border: 1px solid #0080FF;
+	background-color: transparent;
+	color: #0080FF;
+	padding: 5px 10px;
+	margin: 5px;
+}
+
+INPUT {
+	border: 1px solid gray;
+	background-color: transparent;
+	padding: 5px 10px;
+	margin: 5px;
+	color: #555;
+}
+
+.mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.banner:hover {
+	background-color: #0060DD;
+	opacity: 1;
+	cursor: hand;
+}
+
+.short {
+	max-width: 100px;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.auto {
+	text-align: center;
+}
+
+.cancelBtn {
+	border: 1px solid gray;
+	color: #555;
+}
+
+.warnBtn {
+	border: 1px solid red;
+	color: red;
+}
+
+.grid {
+	margin: 20px 0px;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(2, 100px);
+	grid-template-rows: repeat(2, 100px);
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	width: 100%;
+}
+
+.box {
+	background-color: white;
+	color: #0080FF;
+	border: 2px solid #0080FF;
+	padding: 15px;
+	margin: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 70px;
+	height: 70px;
+}
+
+.special {
+	background-color: #0080FF;
+	color: white;
+	margin: auto;
+}
+
+.box:hover {
+	background-color: #0080FF;
+	color: white;
+	cursor: hand;
+}
+
+.tableList {
+	background-color: white;
+	border-collapse: collapse;
+	border: 1px solid gray;
+	margin: 10px;
+}
+
+.tableList TH, TD {
+	border: 1px solid gray;
+	padding: 10px;
+	text-align: left;
+}
+
+.editForm {
+	background-color: white;
+	border: 0;
+	margin: 10px;
+}
+
+.editForm TH {
+	border: 0;
+	padding: 10px;
+	text-align: right;
+}
+
+.editForm TD {
+	border: 0;
+	padding: 10px;
+	text-align: left;
+}
+
+#newActivityForm {
+	display: none;
+}
+
+#newRoutineForm {
+	display: none;
+}
+
+.logSection {
+	padding: 10px 20px 20px 0px;
+}
+
+.logEntry {
+	border: 0;
+}
+
+.logEntry TD {
+	border: 0;
+	padding: 5px;
+}
+
+/* Large Screens */
+ 
+@media only screen and (min-width: 651px) {
+
+	NAV {
+		margin: 10px;
+	}
+
+	MAIN {
+		margin: 20px;
+	}
+
+	.mainBtn {
+		width: 15vw;
+		min-width: 100px;
+		max-width: 576px;
+		height: 80vh;
+		min-height: 300px;
+		max-height: 720px;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: .7vw;
+	}
+	
+	.banner {
+		width: 100%;
+		height: 2em;
+		background-color: #0080FF;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		font-family: Calibri, Arial, Helvetica, sans-serif;
+		font-size: 3.5vh;
+		position: relative;
+		top: 20vh;
+		opacity: .9;
+	}
+
+	.activityTable {
+		border: 1px solid gray;
+		padding: 10px;
+		margin: 10px;
+	}
+	
+	.activityTable TD, TH {
+		border: 0;
+		padding: 2px;
+	}
+}
+
+/* Small Screens */
+
+@media only screen and (max-width: 650px) {
+
+	NAV {
+		margin: 5px;
+	}
+
+	MAIN {
+		margin: 5px;
+	}
+       
+    .letsgo {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        margin-top: 10vh;
+    }
+
+	.mainBtn {
+		width: 100px;
+		height: 100px;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 10px;
+	}
+	
+	.banner {
+		width: 100%;
+		height: 2em;
+		background-color: #0080FF;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		font-family: Calibri, Arial, Helvetica, sans-serif;
+		font-size: 18px;
+		position: relative;
+		top: 20px;
+		opacity: .9;
+	}
+
+	.halfWidth {
+		width: 47vw;
+	}
+
+	.activityTable {
+		border: 1px solid gray;
+		padding: 5px;
+		margin: 5px;
+		width: 45vw;
+	}
+	
+	.activityTable TD, TH {
+		border: 0;
+		padding: 2px;
+	}
+}

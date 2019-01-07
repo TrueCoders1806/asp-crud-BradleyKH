@@ -21,7 +21,7 @@ namespace ASP_CRUD
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT id, creator, date, activity, amount FROM logs;";
+                cmd.CommandText = "SELECT id, creator, date, session FROM logs;";
 
                 var reader = cmd.ExecuteReader();
 
@@ -32,8 +32,7 @@ namespace ASP_CRUD
                         Id = (int)reader["id"],
                         Creator = (int)reader["creator"],
                         Date = Convert.ToDateTime(reader["date"]),
-                        Activity = (int)reader["activity"],
-                        Amount = (int)reader["amount"]
+                        Session = reader["session"].ToString()
                     };
 
                     logs.Add(l);
@@ -52,12 +51,11 @@ namespace ASP_CRUD
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO logs (creator, date, activity, amount) " +
+                cmd.CommandText = "INSERT INTO logs (creator, date, session) " +
                     "VALUES (@creator, @date, @activity, @amount);";
                 cmd.Parameters.AddWithValue("creator", l.Creator);
                 cmd.Parameters.AddWithValue("date", l.Date);
-                cmd.Parameters.AddWithValue("activity", l.Activity);
-                cmd.Parameters.AddWithValue("amount", l.Amount);
+                cmd.Parameters.AddWithValue("session", l.Session);
 
                 return cmd.ExecuteNonQuery();
             }
@@ -88,12 +86,11 @@ namespace ASP_CRUD
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "UPDATE logs SET creator = @creator, date = @date, activity = @activity, " +
-                    "amount = @amount WHERE id = @id";
+                cmd.CommandText = "UPDATE logs SET creator = @creator, date = @date, session = @session " +
+                    "WHERE id = @id";
                 cmd.Parameters.AddWithValue("creator", l.Creator);
                 cmd.Parameters.AddWithValue("date", l.Date);
-                cmd.Parameters.AddWithValue("activity", l.Activity);
-                cmd.Parameters.AddWithValue("amount", l.Amount);
+                cmd.Parameters.AddWithValue("session", l.Session);
                 cmd.Parameters.AddWithValue("id", l.Id);
 
                 cmd.ExecuteNonQuery();

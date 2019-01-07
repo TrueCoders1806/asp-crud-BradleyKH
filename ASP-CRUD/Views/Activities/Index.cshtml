@@ -1,0 +1,62 @@
+﻿@model ASP_CRUD.Models.ViewModels.ActivityViewModel
+@{
+    ViewData["Title"] = "Activities";
+}
+
+<h1>Activities</h1>
+
+<div>
+    <a asp-area="" asp-controller="Routine" asp-action="Index">Back to Routines</a>
+</div>
+
+<table class="activityTable" id="unusedAct">
+    <tr>
+        <td colspan="2">
+            <div id="newActivityBtn">
+                <button type="button" onclick="showNewActForm()">+ NEW ACTIVITY</button>
+            </div>
+
+            <div id="newActivityForm">
+                @using (Html.BeginForm("CreateActivity", "Activities", "POST"))
+                {
+                    <input asp-for="Creator" type="hidden" value="1" />
+
+                    <input type="text" name="ActivityName" placeholder="Enter activity name"><br>
+                    <button type="submit">CREATE</button>
+                    <button type="button" class="cancelBtn" onclick="hideNewActForm()">CANCEL</button>
+                }
+            </div>
+        </td>
+    </tr>
+
+    @for (var i = 0; i < Model.Activities.Count; i++)
+    {
+        <tr>
+            <td>
+                @using (Html.BeginForm("UpdateActivity", "Activities", "POST"))
+                {
+                    <div id="activityName-@i" onclick="editAct(@i)">@Model.Activities[i].ActivityName</div>
+                    <input asp-for="Id" type="hidden" name="Id" value="@Model.Activities[i].Id" />
+                    <input id="activityField-@i" class="short" type="text" value="@Model.Activities[i].ActivityName" style="display: none"
+                           name="ActivityName" />
+                    <button type="submit" id="renameSubmit" style="display: none">SAVE</button>
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("DeleteActivity", "Activities", "POST"))
+                {
+                    <input asp-for="ActivityId" type="hidden" name="ActivityId" value="@Model.Activities[i].Id" />
+                    <button id="deleteBtn-@i" type="submit" class="warnBtn">Delete</button>
+                }
+                <button id="saveBtn-@i" type="button" onclick="document.getElementById('renameSubmit').click()" style="display: none">SAVE</button>
+            </td>
+        </tr>
+    }
+    @if (Model.Activities.Count < 1)
+    {
+        <tr>
+            <td>Add some activities!</td>
+        </tr>
+    }
+    
+</table>
